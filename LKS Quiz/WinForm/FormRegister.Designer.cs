@@ -31,16 +31,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbUsername = new System.Windows.Forms.TextBox();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tbFullName = new System.Windows.Forms.TextBox();
             this.tbRePassword = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.linkLogin = new System.Windows.Forms.LinkLabel();
@@ -84,41 +84,21 @@
             this.panelInput.Size = new System.Drawing.Size(717, 168);
             this.panelInput.TabIndex = 15;
             // 
-            // label3
+            // dtpBirth
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Username";
+            this.dtpBirth.Location = new System.Drawing.Point(16, 129);
+            this.dtpBirth.Name = "dtpBirth";
+            this.dtpBirth.Size = new System.Drawing.Size(304, 20);
+            this.dtpBirth.TabIndex = 3;
             // 
-            // tbUsername
+            // label7
             // 
-            this.tbUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbUsername.Location = new System.Drawing.Point(16, 32);
-            this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(304, 20);
-            this.tbUsername.TabIndex = 9;
-            this.tbUsername.TextChanged += new System.EventHandler(this.tbUsername_TextChanged);
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPassword.Location = new System.Drawing.Point(393, 32);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(304, 20);
-            this.tbPassword.TabIndex = 11;
-            this.tbPassword.UseSystemPasswordChar = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(390, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Password";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 113);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Date of Birth";
             // 
             // label5
             // 
@@ -135,7 +115,7 @@
             this.tbFullName.Location = new System.Drawing.Point(16, 80);
             this.tbFullName.Name = "tbFullName";
             this.tbFullName.Size = new System.Drawing.Size(304, 20);
-            this.tbFullName.TabIndex = 13;
+            this.tbFullName.TabIndex = 2;
             // 
             // tbRePassword
             // 
@@ -143,8 +123,7 @@
             this.tbRePassword.Location = new System.Drawing.Point(393, 80);
             this.tbRePassword.Name = "tbRePassword";
             this.tbRePassword.Size = new System.Drawing.Size(304, 20);
-            this.tbRePassword.TabIndex = 15;
-            this.tbRePassword.UseSystemPasswordChar = true;
+            this.tbRePassword.TabIndex = 5;
             // 
             // label6
             // 
@@ -155,28 +134,47 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Retype Password";
             // 
-            // label7
+            // label3
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 113);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Date of Birth";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Username";
             // 
-            // dtpBirth
+            // tbUsername
             // 
-            this.dtpBirth.Location = new System.Drawing.Point(16, 129);
-            this.dtpBirth.Name = "dtpBirth";
-            this.dtpBirth.Size = new System.Drawing.Size(304, 20);
-            this.dtpBirth.TabIndex = 17;
+            this.tbUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbUsername.Location = new System.Drawing.Point(16, 32);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(304, 20);
+            this.tbUsername.TabIndex = 1;
+            this.tbUsername.TextChanged += new System.EventHandler(this.tbUsername_TextChanged);
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPassword.Location = new System.Drawing.Point(393, 32);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(304, 20);
+            this.tbPassword.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(390, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Password";
             // 
             // btnRegister
             // 
             this.btnRegister.Location = new System.Drawing.Point(214, 307);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(328, 33);
-            this.btnRegister.TabIndex = 16;
+            this.btnRegister.TabIndex = 6;
             this.btnRegister.Text = "Create Account";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
@@ -196,7 +194,7 @@
             this.linkLogin.Location = new System.Drawing.Point(423, 354);
             this.linkLogin.Name = "linkLogin";
             this.linkLogin.Size = new System.Drawing.Size(33, 13);
-            this.linkLogin.TabIndex = 18;
+            this.linkLogin.TabIndex = 7;
             this.linkLogin.TabStop = true;
             this.linkLogin.Text = "Login";
             this.linkLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLogin_LinkClicked);

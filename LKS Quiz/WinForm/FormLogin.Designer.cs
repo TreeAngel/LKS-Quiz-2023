@@ -79,7 +79,7 @@
             this.label6.Location = new System.Drawing.Point(140, 323);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 13);
-            this.label6.TabIndex = 5;
+            this.label6.TabIndex = 500;
             this.label6.Text = "Don\'t have an account?";
             // 
             // linkRegister
@@ -90,7 +90,7 @@
             this.linkRegister.Location = new System.Drawing.Point(261, 323);
             this.linkRegister.Name = "linkRegister";
             this.linkRegister.Size = new System.Drawing.Size(81, 13);
-            this.linkRegister.TabIndex = 6;
+            this.linkRegister.TabIndex = 5;
             this.linkRegister.Text = "Create Account";
             this.linkRegister.Click += new System.EventHandler(this.linkRegister_Click);
             // 
@@ -111,7 +111,7 @@
             this.linkJoinQuiz.Location = new System.Drawing.Point(199, 349);
             this.linkJoinQuiz.Name = "linkJoinQuiz";
             this.linkJoinQuiz.Size = new System.Drawing.Size(91, 13);
-            this.linkJoinQuiz.TabIndex = 8;
+            this.linkJoinQuiz.TabIndex = 6;
             this.linkJoinQuiz.Text = "Join quiz as guest";
             this.linkJoinQuiz.Click += new System.EventHandler(this.linkJoinQuiz_Click);
             // 
@@ -121,7 +121,8 @@
             this.tbUsername.Location = new System.Drawing.Point(16, 32);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(241, 20);
-            this.tbUsername.TabIndex = 9;
+            this.tbUsername.TabIndex = 1;
+            this.tbUsername.Text = "mahdi";
             // 
             // tbPassword
             // 
@@ -129,7 +130,8 @@
             this.tbPassword.Location = new System.Drawing.Point(16, 88);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(241, 20);
-            this.tbPassword.TabIndex = 11;
+            this.tbPassword.TabIndex = 2;
+            this.tbPassword.Text = "1234";
             this.tbPassword.UseSystemPasswordChar = true;
             // 
             // label4
@@ -147,7 +149,7 @@
             this.cbShowPassword.Location = new System.Drawing.Point(155, 114);
             this.cbShowPassword.Name = "cbShowPassword";
             this.cbShowPassword.Size = new System.Drawing.Size(102, 17);
-            this.cbShowPassword.TabIndex = 12;
+            this.cbShowPassword.TabIndex = 3;
             this.cbShowPassword.Text = "Show Password";
             this.cbShowPassword.UseVisualStyleBackColor = true;
             this.cbShowPassword.CheckedChanged += new System.EventHandler(this.cbShowPassword_CheckedChanged);
@@ -159,7 +161,7 @@
             this.btnLogin.Location = new System.Drawing.Point(124, 282);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(241, 27);
-            this.btnLogin.TabIndex = 13;
+            this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);

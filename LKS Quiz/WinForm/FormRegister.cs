@@ -1,12 +1,6 @@
 ﻿using LKS_Quiz.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LKS_Quiz.WinForm
@@ -41,6 +35,11 @@ namespace LKS_Quiz.WinForm
                 MessageBox.Show("Fill all information to proceed!");
                 return;
             }
+            if (tbPassword.Text.Length <4)
+            {
+                MessageBox.Show("Password must be at 4 characters long");
+                return;
+            }
             if (!tbRePassword.Text.Equals(tbPassword.Text))
             {
                 MessageBox.Show("Confirm your password!");
@@ -60,15 +59,16 @@ namespace LKS_Quiz.WinForm
                     return;
                 }
                 DateTime dateOfBirth = Convert.ToDateTime(dtpBirth.Value.ToShortDateString());
-                entities.Users.Add(new User
+                entities.Users.Add(new Util.User // Untuk ini entah kenapa harus pake Util.User kalau bisa usahakan langsung aja refer to User yang dari database
                 {
-                    Username = tbUsername.Text,
-                    FullName = tbUsername.Text,
-                    Password = tbPassword.Text,
+                    Username = tbUsername.Text.Trim(),
+                    FullName = tbFullName.Text.Trim(),
+                    Password = tbPassword.Text.Trim(),
                     DateOfBirth = dateOfBirth,
                 });
                 entities.SaveChanges();
                 MessageBox.Show("Successfully created a new accound");
+                Helper.ClearInput(panelInput);
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());

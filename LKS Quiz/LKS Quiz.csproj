@@ -100,10 +100,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinForm\FormMainUser.cs">
+    <Compile Include="WinForm\User\FormAddQuiz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WinForm\FormMainUser.Designer.cs">
+    <Compile Include="WinForm\User\FormAddQuiz.Designer.cs">
+      <DependentUpon>FormAddQuiz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\User\FormMainUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\User\FormMainUser.Designer.cs">
       <DependentUpon>FormMainUser.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\FormRegister.cs">
@@ -127,7 +133,10 @@
     <EmbeddedResource Include="WinForm\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\FormMainUser.resx">
+    <EmbeddedResource Include="WinForm\User\FormAddQuiz.resx">
+      <DependentUpon>FormAddQuiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\User\FormMainUser.resx">
       <DependentUpon>FormMainUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormRegister.resx">

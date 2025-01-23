@@ -21,7 +21,7 @@ namespace LKS_Quiz
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            Helper.ClearInput(panelInput);
+            //Helper.ClearInput(panelInput);
         }
 
         private void cbShowPassword_CheckedChanged(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace LKS_Quiz
             try
             {
                 QuizinAjaEntities entities = new QuizinAjaEntities();
-                var user = entities.Users.FirstOrDefault(x => x.Username.Equals(tbUsername.Text) && x.Password.Equals(tbPassword.Text));
+                var user = entities.Users.FirstOrDefault(x => x.Username.Equals(tbUsername.Text.Trim()) && x.Password.Equals(tbPassword.Text.Trim()));
                 if (user == null)
                 {
                     MessageBox.Show("Invalid credentials!");
