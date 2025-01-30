@@ -14,7 +14,7 @@ namespace LKS_Quiz.WinForm
 {
     public partial class FormMainUser : Form
     {
-        List<Quiz> quizs = new List<Quiz>();
+        List<Quiz> quizzes = new List<Quiz>();
 
         public FormMainUser()
         {
@@ -41,7 +41,7 @@ namespace LKS_Quiz.WinForm
                 dgvUserQuiz.Rows.Clear();
                 foreach (var item in data)
                 {
-                    quizs.Add(item);
+                    quizzes.Add(item);
                     dgvUserQuiz.Rows.Add(new object[]
                     {
                         item.ID,
@@ -85,7 +85,7 @@ namespace LKS_Quiz.WinForm
                 try
                 {
                     QuizinAjaEntities entities = new QuizinAjaEntities();
-                    Quiz delete = entities.Quizs.Find(quizs[e.RowIndex].ID);
+                    Quiz delete = entities.Quizs.Find(quizzes[e.RowIndex].ID);
                     entities.Quizs.Remove(delete);
                     entities.SaveChanges();
                     GetData();
@@ -96,6 +96,13 @@ namespace LKS_Quiz.WinForm
                     return;
                 }
             }
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            Hide();
+            new FormQuizReport(quizzes).ShowDialog();
+            Show();
         }
     }
 }

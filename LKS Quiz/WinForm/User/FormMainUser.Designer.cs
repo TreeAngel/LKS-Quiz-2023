@@ -144,6 +144,7 @@
             this.btnReport.TabIndex = 2;
             this.btnReport.Text = "View Quiz Report";
             this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnLogout
             // 

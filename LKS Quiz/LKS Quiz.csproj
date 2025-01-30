@@ -118,6 +118,12 @@
     <Compile Include="WinForm\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\User\FormQuizReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\User\FormQuizReport.Designer.cs">
+      <DependentUpon>FormQuizReport.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\User\FormQuizReport.resx">
+      <DependentUpon>FormQuizReport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
