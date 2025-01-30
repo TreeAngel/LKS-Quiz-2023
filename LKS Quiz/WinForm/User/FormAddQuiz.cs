@@ -43,7 +43,6 @@ namespace LKS_Quiz.WinForm.User
                 Quiz quiz = entities.Quizs.FirstOrDefault(x => x.Code.Equals(tbQuizCode.Text));
                 if (quiz != null)
                 {
-                    //MessageBox.Show($"Quiz with {tbQuizCode} code already exist");
                     errorProvider.SetError(tbQuizCode, "Quiz code not unique");
                     codeValid = false;
                     return;
@@ -95,7 +94,6 @@ namespace LKS_Quiz.WinForm.User
         {
             try
             {
-
                 if (!Helper.IsEmptyOrNo(panelQuizInput))
                 {
                     MessageBox.Show("Fill the quiz detail before add question");
@@ -113,7 +111,7 @@ namespace LKS_Quiz.WinForm.User
                     Name = tbQuizName.Text.Trim(),
                     Code = tbQuizCode.Text.Trim(),
                     Description = tbQuizDesc.Text.Trim(),
-                };
+                }; tbQuizDesc.ReadOnly = false;
 
                 if (!Helper.IsEmptyOrNo(panelQuestionInput))
                 {
@@ -129,19 +127,19 @@ namespace LKS_Quiz.WinForm.User
                 var checkedRBTN = panelQuestionInput.Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
                 if (checkedRBTN.Equals(rBtnOptA))
                 {
-                    correctAnswer = tbOptA.Text.Trim();
+                    correctAnswer = tbOptA.Text;
                 }
                 if (checkedRBTN.Equals(rBtnOptB))
                 {
-                    correctAnswer = tbOptB.Text.Trim();
+                    correctAnswer = tbOptB.Text;
                 }
                 if (checkedRBTN.Equals(rBtnOptC))
                 {
-                    correctAnswer = tbOptC.Text.Trim();
+                    correctAnswer = tbOptC.Text;
                 }
                 if (checkedRBTN.Equals(rBtnOptD))
                 {
-                    correctAnswer = tbOptD.Text.Trim();
+                    correctAnswer = tbOptD.Text;
                 }
 
                 Question newQuestion = new Question
@@ -152,7 +150,7 @@ namespace LKS_Quiz.WinForm.User
                     OptionB = tbOptB.Text.Trim(),
                     OptionC = tbOptC.Text.Trim(),
                     OptionD = tbOptD.Text.Trim(),
-                    CorrectAnswer = correctAnswer,
+                    CorrectAnswer = correctAnswer.Trim(),
                 };
                 int existQuestion = questions.FindIndex(x => x.Question1.Equals(newQuestion.Question1));
                 if (existQuestion != -1)
@@ -164,6 +162,7 @@ namespace LKS_Quiz.WinForm.User
                     questions.Add(newQuestion);
                 }
                 LoadQuestions();
+                Helper.ClearInput(panelQuestionInput);
             }
             catch (Exception ex)
             {
@@ -174,10 +173,6 @@ namespace LKS_Quiz.WinForm.User
 
         private void LoadQuestions()
         {
-            if (questions.Count <= 0)
-            {
-                return;
-            }
             dgvNewQuizQuestions.Rows.Clear();
             int no = 1;
             foreach (var item in questions)
@@ -195,7 +190,6 @@ namespace LKS_Quiz.WinForm.User
                 });
                 no++;
             }
-            dgvNewQuizQuestions.Refresh();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -208,6 +202,68 @@ namespace LKS_Quiz.WinForm.User
             if (MessageBox.Show("Close this window?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Close();
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (questions.Count <= 0)
+                {
+                    MessageBox.Show("There should be atleast 1 question for new quiz");
+                    return;
+                }
+                if (MessageBox.Show("Save the new quiz and all the questions?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+
+                QuizinAjaEntities entities = new QuizinAjaEntities();
+                newQuiz.CreatedAt = DateTime.Now;
+                entities.Quizs.Add(newQuiz);
+                entities.SaveChanges();
+                foreach (var item in questions)
+                {
+                    item.QuizID = newQuiz.ID;
+                    entities.Questions.Add(item);
+                }
+                entities.SaveChanges();
+
+                MessageBox.Show("New quiz and its questions successfully saved");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+        }
+
+        private void dgvNewQuizQuestions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Question question = questions[e.RowIndex];
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvNewQuizQuestions.Columns["clmDeleteBtn"].Index)
+            {
+                if (MessageBox.Show("Delete this question?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+                questions.Remove(question);
+                LoadQuestions();
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex != dgvNewQuizQuestions.Columns["clmDeleteBtn"].Index)
+            {
+                tbQuestion.Text = question.Question1;
+                tbOptA.Text = question.OptionA;
+                tbOptB.Text = question.OptionB;
+                tbOptC.Text = question.OptionC;
+                tbOptD.Text = question.OptionD;
+
+                if (question.CorrectAnswer == question.OptionA) { rBtnOptA.Checked = true; }
+                if (question.CorrectAnswer == question.OptionB) { rBtnOptB.Checked = true; }
+                if (question.CorrectAnswer == question.OptionC) { rBtnOptC.Checked = true; }
+                if (question.CorrectAnswer == question.OptionD) { rBtnOptD.Checked = true; }
             }
         }
     }

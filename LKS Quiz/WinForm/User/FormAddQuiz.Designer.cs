@@ -101,7 +101,7 @@
             this.panelQuizInput.Location = new System.Drawing.Point(16, 62);
             this.panelQuizInput.Name = "panelQuizInput";
             this.panelQuizInput.Size = new System.Drawing.Size(756, 98);
-            this.panelQuizInput.TabIndex = 8;
+            this.panelQuizInput.TabIndex = 81;
             // 
             // label5
             // 
@@ -164,9 +164,10 @@
             this.btnSave.Location = new System.Drawing.Point(551, 476);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 23);
-            this.btnSave.TabIndex = 15;
+            this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -174,7 +175,7 @@
             this.btnCancel.Location = new System.Drawing.Point(665, 476);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(107, 23);
-            this.btnCancel.TabIndex = 14;
+            this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -198,12 +199,13 @@
             this.panelQuestionInput.Location = new System.Drawing.Point(16, 176);
             this.panelQuestionInput.Name = "panelQuestionInput";
             this.panelQuestionInput.Size = new System.Drawing.Size(756, 294);
-            this.panelQuestionInput.TabIndex = 11;
+            this.panelQuestionInput.TabIndex = 111;
             // 
             // dgvNewQuizQuestions
             // 
             this.dgvNewQuizQuestions.AllowUserToAddRows = false;
             this.dgvNewQuizQuestions.AllowUserToDeleteRows = false;
+            this.dgvNewQuizQuestions.AllowUserToResizeColumns = false;
             this.dgvNewQuizQuestions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNewQuizQuestions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNewQuizQuestions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -223,6 +225,7 @@
             this.dgvNewQuizQuestions.RowHeadersVisible = false;
             this.dgvNewQuizQuestions.Size = new System.Drawing.Size(756, 146);
             this.dgvNewQuizQuestions.TabIndex = 221;
+            this.dgvNewQuizQuestions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNewQuizQuestions_CellContentClick);
             // 
             // clmNo
             // 

@@ -67,6 +67,7 @@
             // 
             this.dgvUserQuiz.AllowUserToAddRows = false;
             this.dgvUserQuiz.AllowUserToDeleteRows = false;
+            this.dgvUserQuiz.AllowUserToResizeRows = false;
             this.dgvUserQuiz.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvUserQuiz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserQuiz.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -84,6 +85,7 @@
             this.dgvUserQuiz.RowHeadersVisible = false;
             this.dgvUserQuiz.Size = new System.Drawing.Size(530, 461);
             this.dgvUserQuiz.TabIndex = 6;
+            this.dgvUserQuiz.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserQuiz_CellContentClick);
             // 
             // clmId
             // 

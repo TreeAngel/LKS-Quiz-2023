@@ -14,6 +14,8 @@ namespace LKS_Quiz.WinForm
 {
     public partial class FormMainUser : Form
     {
+        List<Quiz> quizs = new List<Quiz>();
+
         public FormMainUser()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace LKS_Quiz.WinForm
                 dgvUserQuiz.Rows.Clear();
                 foreach (var item in data)
                 {
+                    quizs.Add(item);
                     dgvUserQuiz.Rows.Add(new object[]
                     {
                         item.ID,
@@ -68,6 +71,31 @@ namespace LKS_Quiz.WinForm
             Hide();
             new FormAddQuiz().ShowDialog();
             Show();
+            GetData();
+        }
+
+        private void dgvUserQuiz_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvUserQuiz.Columns["clmActionBtn"].Index)
+            {
+                if (MessageBox.Show("Delete this quiz?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+                try
+                {
+                    QuizinAjaEntities entities = new QuizinAjaEntities();
+                    Quiz delete = entities.Quizs.Find(quizs[e.RowIndex].ID);
+                    entities.Quizs.Remove(delete);
+                    entities.SaveChanges();
+                    GetData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return;
+                }
+            }
         }
     }
 }
