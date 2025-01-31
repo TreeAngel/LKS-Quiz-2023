@@ -39,29 +39,47 @@ namespace LKS_Quiz.WinForm.User
                 cbQuiz.Items.Add(item.Name);
             }
             cbQuiz.SelectedIndex = 0;
-            LoadData(userQuizzes.First(x => x.Name.Equals(cbQuiz.SelectedItem.ToString())));
+            LoadData(cbQuiz.SelectedItem.ToString());
         }
 
-        private void LoadData(Quiz quiz)
+        private void LoadData(String quizName)
         {
             try
             {
                 QuizinAjaEntities entities = new QuizinAjaEntities();
-                var participants = entities.Participants.Where(x => x.QuizID == quiz.ID);
-                if (!participants.Any())
+                var participants = entities.Participants.Where(x => x.Quiz.Name.Equals(quizName));
+                var questions = entities.Questions.Where(x => x.Quiz.Name.Equals(quizName));
+                if (participants.Any() && questions.Any())
                 {
-                    MessageBox.Show("This quiz doesn't have any participant at the time");
-                    return;
-                }
-                dgvQuizParticipants.Rows.Clear();
-                foreach (var item in participants)
-                {
-                    dgvQuizParticipants.Rows.Add(new object[]
+                    var avgTimeTaken = TimeSpan.FromSeconds(participants.Average(x => x.TimeTaken));
+                    lblAverageTime.Text = avgTimeTaken.ToString();
+
+                    var avgCorrectPercentage = participants.Average(x => x.ParticipantAnswers.Count(
+                                y => y.Answer == y.Question.CorrectAnswer) / questions.Count() * 100);
+                    lblCorrectPercentage.Text = $"{avgCorrectPercentage}%";
+
+                    lblTotalParticipant.Text = $"{participants.Count()} Participant(s)";
+
+                    dgvQuizParticipants.Rows.Clear();
+                    foreach (var item in participants)
                     {
-                        item.ParticipantNickname,
-                        Convert.ToDateTime(item.ParticipationDate.ToString("HH:mm:ss")),
-                        (item.ParticipantAnswers.Count()),
-                    });
+                        var correctAnswer = item.ParticipantAnswers.Count(x => x.Answer.Equals(x.Question.CorrectAnswer));
+                        var correctPercentage = correctAnswer / questions.Count() * 100;
+
+                        dgvQuizParticipants.Rows.Add(new object[]
+                        {
+                            item.ParticipantNickname,
+                            TimeSpan.FromSeconds(item.TimeTaken),
+                            $"{correctPercentage}%",
+                        });
+                    }
+                }
+                else
+                {
+                    lblAverageTime.Text = "00:00:00";
+                    lblCorrectPercentage.Text = "00%";
+                    lblTotalParticipant.Text = "0 Participant(s)";
+                    dgvQuizParticipants.Rows.Clear();
                 }
             }
             catch (Exception ex)
