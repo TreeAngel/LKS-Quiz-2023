@@ -21,5 +21,10 @@ namespace LKS_Quiz.Util
         {
 
         }
+
+        public void DoneColor()
+        {
+            btnQuestion.BackColor = Color.ForestGreen;
+        }
     }
 }

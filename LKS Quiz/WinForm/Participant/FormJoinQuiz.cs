@@ -33,9 +33,9 @@ namespace LKS_Quiz.WinForm
                 MessageBox.Show("Quiz code not valid");
                 return;
             }
-            this.Hide();
+            Hide();
             new FormQuiz(tbNickname.Text.Trim(), quiz).ShowDialog();
-            Show();
+            Close();
         }
 
         private void FormJoinQuiz_Load(object sender, EventArgs e)

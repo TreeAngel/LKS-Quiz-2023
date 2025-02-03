@@ -16,7 +16,7 @@ namespace LKS_Quiz.WinForm.User
         Quiz newQuiz;
         List<Question> questions = new List<Question>();
         bool codeValid;
-        String correctAnswer;
+        string correctAnswer;
 
         public FormAddQuiz()
         {
@@ -103,7 +103,7 @@ namespace LKS_Quiz.WinForm.User
                     Name = tbQuizName.Text.Trim(),
                     Code = tbQuizCode.Text.Trim(),
                     Description = tbQuizDesc.Text.Trim(),
-                }; tbQuizDesc.ReadOnly = false;
+                };
 
                 if (!Helper.IsEmptyOrNo(panelQuestionInput))
                 {
