@@ -33,5 +33,13 @@ namespace LKS_Quiz.Util
                 item.SelectedIndex = -1;
             }
         }
+
+        public static void tbQuizCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar) && !Char.IsUpper(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

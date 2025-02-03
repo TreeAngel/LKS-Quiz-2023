@@ -62,7 +62,7 @@ namespace LKS_Quiz.WinForm
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Helper.userSession = null;
+            Helper.userSession = new Util.User();
             Close();
         }
 
@@ -85,10 +85,27 @@ namespace LKS_Quiz.WinForm
                 try
                 {
                     QuizinAjaEntities entities = new QuizinAjaEntities();
+                    Console.WriteLine(quizzes[e.RowIndex].ID);
                     Quiz delete = entities.Quizs.Find(quizzes[e.RowIndex].ID);
-                    entities.Quizs.Remove(delete);
-                    entities.SaveChanges();
-                    GetData();
+                    if (delete == null)
+                    {
+                        MessageBox.Show("Quiz not found or not exist in the actual database");
+                        return;
+                    }
+                    else
+                    {
+                        var questions = entities.Questions.Where(x => x.QuizID == delete.ID);
+                        var participants = entities.Participants.Where(x => x.QuizID == delete.ID);
+                        var answer = entities.ParticipantAnswers.Where(x => x.Question.QuizID == delete.ID && x.Participant.QuizID == delete.ID);
+
+                        entities.ParticipantAnswers.RemoveRange(answer);
+                        entities.Questions.RemoveRange(questions);
+                        entities.Participants.RemoveRange(participants);
+
+                        entities.Quizs.Remove(delete);
+                        entities.SaveChanges();
+                        GetData();
+                    }
                 }
                 catch (Exception ex)
                 {

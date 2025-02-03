@@ -71,11 +71,12 @@
             this.cbQuiz.Name = "cbQuiz";
             this.cbQuiz.Size = new System.Drawing.Size(329, 21);
             this.cbQuiz.TabIndex = 2;
+            this.cbQuiz.SelectedIndexChanged += new System.EventHandler(this.cbQuiz_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(429, 53);
+            this.label3.Location = new System.Drawing.Point(522, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 13);
             this.label3.TabIndex = 3;
@@ -84,7 +85,7 @@
             // lblAverageTime
             // 
             this.lblAverageTime.AutoSize = true;
-            this.lblAverageTime.Location = new System.Drawing.Point(548, 53);
+            this.lblAverageTime.Location = new System.Drawing.Point(635, 53);
             this.lblAverageTime.Name = "lblAverageTime";
             this.lblAverageTime.Size = new System.Drawing.Size(49, 13);
             this.lblAverageTime.TabIndex = 4;
@@ -93,7 +94,7 @@
             // lblCorrectPercentage
             // 
             this.lblCorrectPercentage.AutoSize = true;
-            this.lblCorrectPercentage.Location = new System.Drawing.Point(583, 80);
+            this.lblCorrectPercentage.Location = new System.Drawing.Point(670, 81);
             this.lblCorrectPercentage.Name = "lblCorrectPercentage";
             this.lblCorrectPercentage.Size = new System.Drawing.Size(27, 13);
             this.lblCorrectPercentage.TabIndex = 6;
@@ -102,7 +103,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(429, 80);
+            this.label6.Location = new System.Drawing.Point(522, 80);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(148, 13);
             this.label6.TabIndex = 5;
@@ -111,7 +112,7 @@
             // lblTotalParticipant
             // 
             this.lblTotalParticipant.AutoSize = true;
-            this.lblTotalParticipant.Location = new System.Drawing.Point(525, 106);
+            this.lblTotalParticipant.Location = new System.Drawing.Point(611, 106);
             this.lblTotalParticipant.Name = "lblTotalParticipant";
             this.lblTotalParticipant.Size = new System.Drawing.Size(83, 13);
             this.lblTotalParticipant.TabIndex = 8;
@@ -120,7 +121,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(429, 106);
+            this.label8.Location = new System.Drawing.Point(522, 106);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 13);
             this.label8.TabIndex = 7;

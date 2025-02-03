@@ -63,9 +63,9 @@ namespace LKS_Quiz.WinForm.User
                     dgvQuizParticipants.Rows.Clear();
                     foreach (var item in participants)
                     {
-                        var correctAnswer = item.ParticipantAnswers.Count(x => x.Answer.Equals(x.Question.CorrectAnswer));
-                        var correctPercentage = correctAnswer / questions.Count() * 100;
-
+                        double correctAnswer = item.ParticipantAnswers.Count(x => x.Answer.Equals(x.Question.CorrectAnswer));
+                        double correctPercentage = correctAnswer / questions.Count() * 100;
+                        correctPercentage = Math.Round(correctPercentage, 2);
                         dgvQuizParticipants.Rows.Add(new object[]
                         {
                             item.ParticipantNickname,
@@ -87,6 +87,11 @@ namespace LKS_Quiz.WinForm.User
                 MessageBox.Show(ex.ToString());
                 return;
             }
+        }
+
+        private void cbQuiz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadData(cbQuiz.SelectedItem.ToString());
         }
     }
 }

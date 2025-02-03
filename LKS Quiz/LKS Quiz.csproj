@@ -86,11 +86,11 @@
     <Compile Include="Util\User.cs">
       <DependentUpon>QuizinAjaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="WinForm\FormJoinQuiz.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Util\UserControlQuestionButton.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinForm\FormJoinQuiz.Designer.cs">
-      <DependentUpon>FormJoinQuiz.cs</DependentUpon>
+    <Compile Include="Util\UserControlQuestionButton.Designer.cs">
+      <DependentUpon>UserControlQuestionButton.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\FormLogin.cs">
       <SubType>Form</SubType>
@@ -100,6 +100,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinForm\Participant\FormJoinQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Participant\FormJoinQuiz.Designer.cs">
+      <DependentUpon>FormJoinQuiz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Participant\FormQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Participant\FormQuiz.Designer.cs">
+      <DependentUpon>FormQuiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\User\FormAddQuiz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,11 +145,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="WinForm\FormJoinQuiz.resx">
-      <DependentUpon>FormJoinQuiz.cs</DependentUpon>
+    <EmbeddedResource Include="Util\UserControlQuestionButton.resx">
+      <DependentUpon>UserControlQuestionButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Participant\FormJoinQuiz.resx">
+      <DependentUpon>FormJoinQuiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Participant\FormQuiz.resx">
+      <DependentUpon>FormQuiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\User\FormAddQuiz.resx">
       <DependentUpon>FormAddQuiz.cs</DependentUpon>
@@ -172,9 +190,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="User Control\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Util\QuizinAjaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

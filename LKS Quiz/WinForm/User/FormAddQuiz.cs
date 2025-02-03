@@ -26,7 +26,7 @@ namespace LKS_Quiz.WinForm.User
         private void FormAddQuiz_Load(object sender, EventArgs e)
         {
             Helper.ClearInput(this);
-            tbQuizCode.KeyPress += tbQuizCode_KeyPress;
+            tbQuizCode.KeyPress += Helper.tbQuizCode_KeyPress;
         }
 
         private void tbQuizCode_TextChanged(object sender, EventArgs e)
@@ -54,14 +54,6 @@ namespace LKS_Quiz.WinForm.User
             {
                 MessageBox.Show(ex.ToString());
                 return;
-            }
-        }
-
-        public static void tbQuizCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsNumber(e.KeyChar) && !Char.IsUpper(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
             }
         }
 

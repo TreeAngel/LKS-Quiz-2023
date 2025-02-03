@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LKS_Quiz.WinForm
+namespace LKS_Quiz.Util
 {
-    public partial class FormJoinQuiz : Form
+    public partial class UserControlQuestionButton : UserControl
     {
-        public FormJoinQuiz()
+        public UserControlQuestionButton()
         {
             InitializeComponent();
+        }
+
+        private void btnQuestion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
