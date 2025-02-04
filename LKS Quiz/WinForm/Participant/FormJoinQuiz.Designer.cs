@@ -62,7 +62,6 @@
             this.tbNickname.Name = "tbNickname";
             this.tbNickname.Size = new System.Drawing.Size(241, 20);
             this.tbNickname.TabIndex = 2;
-            this.tbNickname.UseSystemPasswordChar = true;
             // 
             // label4
             // 

@@ -35,12 +35,12 @@
             // 
             this.btnQuestion.BackColor = System.Drawing.Color.LightGray;
             this.btnQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnQuestion.Location = new System.Drawing.Point(0, 0);
             this.btnQuestion.Name = "btnQuestion";
-            this.btnQuestion.Size = new System.Drawing.Size(150, 150);
+            this.btnQuestion.Size = new System.Drawing.Size(60, 60);
             this.btnQuestion.TabIndex = 0;
-            this.btnQuestion.Text = "Question Number";
+            this.btnQuestion.Text = "111";
             this.btnQuestion.UseVisualStyleBackColor = false;
             this.btnQuestion.Click += new System.EventHandler(this.btnQuestion_Click);
             // 
@@ -50,6 +50,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnQuestion);
             this.Name = "UserControlQuestionButton";
+            this.Size = new System.Drawing.Size(60, 60);
             this.ResumeLayout(false);
 
         }

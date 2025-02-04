@@ -21,7 +21,7 @@ namespace LKS_Quiz.WinForm
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (Helper.IsEmptyOrNo(panelInput))
+            if (!Helper.IsEmptyOrNo(panelInput))
             {
                 MessageBox.Show("Enter the quiz code and you nickname");
                 return;

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,9 +19,9 @@ namespace LKS_Quiz.WinForm.Participant
 
         DateTime startTime;
         TimeSpan elapsedTime;
-        List<Question> questions;
-        List<ParticipantAnswer> answers;
-        int questionIndex, selectedIndex;
+        List<Question> questions = new List<Question>();
+        List<ParticipantAnswer> answers = new List<ParticipantAnswer>();
+        int questionIndex, selectedIndex = 0;
         string participantAnswer;
 
         public FormQuiz(string nickname, Quiz quiz)
@@ -35,26 +36,27 @@ namespace LKS_Quiz.WinForm.Participant
         {
             lblNickname.Text = nickname;
             questions = quiz.Questions.ToList();
-            loadQuestionButton();
+            LoadQuestionButton();
+            DisplayQuestion();
             startTime = DateTime.Now;
         }
 
         private void timerElapsed_Tick(object sender, EventArgs e)
         {
             elapsedTime = DateTime.Now - startTime;
-            lblTimeElapsed.Text = elapsedTime.ToString();
+            lblTimeElapsed.Text = $"{elapsedTime.Hours:D2}:{elapsedTime.Minutes:D2}:{elapsedTime.Seconds:D2}";
         }
 
-        private void loadQuestionButton()
+        private void LoadQuestionButton()
         {
             try
             {
                 fpanelQuestionsBtn.Controls.Clear();
-                int index = 1;
+                int index = 0;
                 foreach (var item in questions)
                 {
                     var userControl = new UserControlQuestionButton();
-                    userControl.btnQuestion.Text = index.ToString();
+                    userControl.btnQuestion.Text = (index + 1).ToString();
                     userControl.btnQuestion.Name = index.ToString();
                     userControl.btnQuestion.Click += btnQuestion_Click;
                     fpanelQuestionsBtn.Controls.Add(userControl);
@@ -80,33 +82,23 @@ namespace LKS_Quiz.WinForm.Participant
             {
                 if (control is RadioButton rb)
                 {
-                    if (!rb.Checked)
+                    if (rb.Checked)
                     {
-                        return;
+                        AddAnswer();
+                        rb.Checked = false;
+                        UserControlQuestionButton userControl = (UserControlQuestionButton)fpanelQuestionsBtn.Controls[selectedIndex];
+                        userControl.DoneColor();
                     }
-                    AddAnswer();
-                    rb.Checked = false;
-                    UserControlQuestionButton userControl = (UserControlQuestionButton)fpanelQuestionsBtn.Controls[index];
-                    userControl.DoneColor();
                 }
             }
             selectedIndex = index;
             questionIndex = selectedIndex;
-            if (index == questions.Count - 1)
-            {
-                btnNext.Text = "Finish";
-            }
-            else
-            {
-                btnNext.Text = "Next";
-            }
             DisplayQuestion();
         }
 
         private void DisplayQuestion()
         {
             Question question = questions[questionIndex];
-            ParticipantAnswer answer = answers.FirstOrDefault(x => x.QuestionID.Equals(question.ID));
 
             lblQuestion.Text = question.Question1.Trim();
             rbOptionA.Text = question.OptionA.Trim();
@@ -114,26 +106,6 @@ namespace LKS_Quiz.WinForm.Participant
             rbOptionC.Text = question.OptionC.Trim();
             rbOptionD.Text = question.OptionD.Trim();
 
-            if (answer == null)
-            {
-                return;
-            }
-            if (answer.Answer.Trim() == question.OptionA.Trim())
-            {
-                rbOptionA.Checked = true;
-            }
-            if (answer.Answer.Trim() == question.OptionB.Trim())
-            {
-                rbOptionB.Checked = true;
-            }
-            if (answer.Answer.Trim() == question.OptionC.Trim())
-            {
-                rbOptionC.Checked = true;
-            }
-            if (answer.Answer.Trim() == question.OptionD.Trim())
-            {
-                rbOptionD.Checked = true;
-            }
             if (selectedIndex == 0)
             {
                 btnPrev.Visible = false;
@@ -141,6 +113,40 @@ namespace LKS_Quiz.WinForm.Participant
             else
             {
                 btnPrev.Visible = true;
+            }
+
+            if (selectedIndex == questions.Count() - 1)
+            {
+                btnNext.Text = "Finish";
+            }
+            else
+            {
+                btnNext.Text = "Next";
+            }
+
+            if (answers.Count > 0)
+            {
+                ParticipantAnswer answer = answers.FirstOrDefault(x => x.QuestionID.Equals(question.ID));
+                if (answer == null)
+                {
+                    return;
+                }
+                if (answer.Answer.Trim() == question.OptionA.Trim())
+                {
+                    rbOptionA.Checked = true;
+                }
+                if (answer.Answer.Trim() == question.OptionB.Trim())
+                {
+                    rbOptionB.Checked = true;
+                }
+                if (answer.Answer.Trim() == question.OptionC.Trim())
+                {
+                    rbOptionC.Checked = true;
+                }
+                if (answer.Answer.Trim() == question.OptionD.Trim())
+                {
+                    rbOptionD.Checked = true;
+                }
             }
         }
 
@@ -163,26 +169,17 @@ namespace LKS_Quiz.WinForm.Participant
         {
             if (btnNext.Text.Trim() == "Next")
             {
-                if (questionIndex == questions.Count - 1)
+                if (selectedIndex != questions.Count() - 1)
                 {
-                    return;
+                    questionIndex++;
+                    NavigateQuestion(questionIndex);
                 }
-                questionIndex++;
-                NavigateQuestion(questionIndex);
+                return;
             }
             if (btnNext.Text.Trim() == "Finish")
             {
-                foreach (Control control in panelQuestion.Controls)
-                {
-                    if (control is RadioButton rb)
-                    {
-                        if (!rb.Checked) { return; }
-                        participantAnswer = GetAnswer();
-                        rb.Checked = false;
-                    }
-                }
                 AddAnswer();
-                if (answers.Count != questions.Count)
+                if (answers.Count() != questions.Count())
                 {
                     MessageBox.Show("All questions must be answered");
                     return;
@@ -208,6 +205,15 @@ namespace LKS_Quiz.WinForm.Participant
                     MessageBox.Show(ex.ToString());
                     return;
                 }
+            }
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (questionIndex != 0)
+            {
+                questionIndex--;
+                NavigateQuestion(questionIndex);
             }
         }
 
@@ -243,8 +249,7 @@ namespace LKS_Quiz.WinForm.Participant
             {
                 return rbOptionD.Text.Trim();
             }
-            MessageBox.Show("Pick one choice");
-            throw new Exception();
+            return null;
         }
     }
 }

@@ -184,7 +184,7 @@
             this.btnPrev.TabIndex = 5;
             this.btnPrev.Text = "Prev";
             this.btnPrev.UseVisualStyleBackColor = true;
-            this.btnPrev.Visible = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // label4
             // 
@@ -206,7 +206,9 @@
             this.Controls.Add(this.lblTimeElapsed);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNickname);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormQuiz";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormQuiz";
             this.Load += new System.EventHandler(this.FormQuiz_Load);
             this.panelQuestion.ResumeLayout(false);
